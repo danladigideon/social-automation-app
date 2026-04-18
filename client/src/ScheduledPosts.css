@@ -1,0 +1,116 @@
+.scheduled-posts {
+  display: grid;
+  gap: 1rem;
+  max-width: 56rem;
+}
+
+.scheduled-posts > p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.scheduled-post-card {
+  background: #1e293b;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem;
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 1.25rem;
+  align-items: start;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+.scheduled-post-thumb {
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  border-radius: 10px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.scheduled-post-body {
+  min-width: 0;
+}
+
+.scheduled-post-caption {
+  margin: 0 0 0.75rem;
+  color: #ffffff;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+.scheduled-post-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.scheduled-post-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #c7d2fe;
+  background: rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(129, 140, 248, 0.4);
+  border-radius: 999px;
+  padding: 0.22rem 0.6rem;
+}
+
+.scheduled-post-time {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.scheduled-post-time span {
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.scheduled-post-delete {
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.scheduled-post-delete:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(248, 113, 113, 0.55);
+  color: #fecaca;
+}
+
+.scheduled-post-delete:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .scheduled-post-card {
+    grid-template-columns: 1fr;
+  }
+
+  .scheduled-post-thumb {
+    height: 110px;
+  }
+
+  .scheduled-post-delete {
+    justify-self: start;
+  }
+}
