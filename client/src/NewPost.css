@@ -196,3 +196,123 @@
   opacity: 0.55;
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  .new-post-card {
+    max-width: none;
+    width: 100%;
+    padding: 1.35rem 1.25rem;
+    box-sizing: border-box;
+  }
+
+  .new-post-heading {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .new-post-label {
+    font-size: 0.75rem;
+  }
+
+  .new-post-textarea,
+  .new-post-file {
+    width: 100%;
+    max-width: none;
+    font-size: 0.875rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .new-post-fieldset {
+    padding: 0.85rem 0.95rem 0.95rem;
+  }
+
+  .new-post-checkbox {
+    font-size: 0.875rem;
+  }
+
+  .new-post-schedule-panel {
+    padding: 1rem 1rem;
+  }
+
+  .new-post-input-datetime {
+    max-width: none;
+    width: 100%;
+    font-size: 0.875rem;
+  }
+
+  .new-post-button--confirm {
+    width: 100%;
+  }
+
+  .new-post-success,
+  .new-post-error,
+  .new-post-uploading {
+    font-size: 0.875rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .new-post-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .new-post-button {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-post-card {
+    padding: 1.1rem 1rem;
+    border-radius: 10px;
+  }
+
+  .new-post-heading {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .new-post-label {
+    font-size: 0.7rem;
+  }
+
+  .new-post-textarea,
+  .new-post-file {
+    font-size: 0.8125rem;
+    padding: 0.6rem 0.65rem;
+    border-radius: 9px;
+  }
+
+  .new-post-fieldset {
+    padding: 0.75rem 0.85rem 0.85rem;
+    border-radius: 9px;
+  }
+
+  .new-post-checkbox {
+    font-size: 0.8125rem;
+  }
+
+  .new-post-schedule-panel {
+    padding: 0.85rem 0.9rem;
+    border-radius: 9px;
+  }
+
+  .new-post-input-datetime {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .new-post-success,
+  .new-post-error,
+  .new-post-uploading {
+    font-size: 0.8125rem;
+  }
+
+  .new-post-button {
+    font-size: 0.8125rem;
+    padding: 0.6rem 1rem;
+    border-radius: 9px;
+  }
+}

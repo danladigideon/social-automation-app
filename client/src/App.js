@@ -41,6 +41,7 @@ function computeDashboardStats(posts) {
 function App() {
   const [activeView, setActiveView] = useState('dashboard');
   const [dashboardPosts, setDashboardPosts] = useState(null);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const views = {
     dashboard: 'Dashboard',
@@ -76,6 +77,29 @@ function App() {
       cancelled = true;
     };
   }, [activeView]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const onChange = () => {
+      if (!mq.matches) setMobileNavOpen(false);
+    };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  useEffect(() => {
+    if (!mobileNavOpen) return undefined;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') setMobileNavOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [mobileNavOpen]);
 
   const dashboardStats = useMemo(() => {
     if (dashboardPosts === null) return null;
@@ -162,9 +186,27 @@ function App() {
     );
   };
 
+  const navigateTo = (view) => {
+    setActiveView(view);
+    setMobileNavOpen(false);
+  };
+
   return (
-    <div className="dashboard">
+    <div className={`dashboard${mobileNavOpen ? ' dashboard--nav-open' : ''}`}>
+      <div
+        className="sidebar-backdrop"
+        aria-hidden="true"
+        onClick={() => setMobileNavOpen(false)}
+      />
       <aside className="sidebar" aria-label="Main navigation">
+        <button
+          type="button"
+          className="sidebar-close"
+          aria-label="Close menu"
+          onClick={() => setMobileNavOpen(false)}
+        >
+          ✕
+        </button>
         <div className="sidebar-brand">
           <svg
             className="sidebar-logo-icon"
@@ -193,28 +235,28 @@ function App() {
           <button
             type="button"
             className={`sidebar-link ${activeView === 'dashboard' ? 'sidebar-link--active' : ''}`}
-            onClick={() => setActiveView('dashboard')}
+            onClick={() => navigateTo('dashboard')}
           >
             Dashboard
           </button>
           <button
             type="button"
             className={`sidebar-link ${activeView === 'newPost' ? 'sidebar-link--active' : ''}`}
-            onClick={() => setActiveView('newPost')}
+            onClick={() => navigateTo('newPost')}
           >
             New Post
           </button>
           <button
             type="button"
             className={`sidebar-link ${activeView === 'scheduled' ? 'sidebar-link--active' : ''}`}
-            onClick={() => setActiveView('scheduled')}
+            onClick={() => navigateTo('scheduled')}
           >
             Scheduled Posts
           </button>
           <button
             type="button"
             className={`sidebar-link ${activeView === 'settings' ? 'sidebar-link--active' : ''}`}
-            onClick={() => setActiveView('settings')}
+            onClick={() => navigateTo('settings')}
           >
             Settings
           </button>
@@ -222,11 +264,25 @@ function App() {
       </aside>
       <main className="main">
         <header className="main-header">
-          <h1 className="main-title">{views[activeView]}</h1>
+          <div className="main-header-start">
+            <button
+              type="button"
+              className="main-header-burger"
+              aria-label={mobileNavOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileNavOpen}
+              onClick={() => setMobileNavOpen((open) => !open)}
+            >
+              ☰
+            </button>
+            <h1 className="main-title">{views[activeView]}</h1>
+          </div>
           <button
             type="button"
             className="main-header-action"
-            onClick={() => setActiveView('newPost')}
+            onClick={() => {
+              setActiveView('newPost');
+              setMobileNavOpen(false);
+            }}
           >
             New Post
           </button>
